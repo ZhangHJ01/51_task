@@ -7,25 +7,24 @@
 
 ; 查找表：每两个字节一组
 ; 第1字节是线反转后读到的P1状态，第2字节是对应键值
-; 普中板正常显示：S1->1，S2->2，...，S9->9，S10->0，S11->A，...，S16->F
+; 普中板正常显示：S1->0，S2->1，...，S10->9，S11->A，...，S16->F
 KEY_TABLE:
     DB 0EEH, 0FH          ; S16 -> F
     DB 0DEH, 0BH          ; S12 -> B
-    DB 0BEH, 08H          ; S8  -> 8
-    DB 07EH, 04H          ; S4  -> 4
+    DB 0BEH, 07H          ; S8  -> 7
+    DB 07EH, 03H          ; S4  -> 3
     DB 0EDH, 0EH          ; S15 -> E
     DB 0DDH, 0AH          ; S11 -> A
-    DB 0BDH, 07H          ; S7  -> 7
-    DB 07DH, 03H          ; S3  -> 3
+    DB 0BDH, 06H          ; S7  -> 6
+    DB 07DH, 02H          ; S3  -> 2
     DB 0EBH, 0DH          ; S14 -> D
-    DB 0DBH, 00H          ; S10 -> 0
-    DB 0BBH, 06H          ; S6  -> 6
-    DB 07BH, 02H          ; S2  -> 2
+    DB 0DBH, 09H          ; S10 -> 9
+    DB 0BBH, 05H          ; S6  -> 5
+    DB 07BH, 01H          ; S2  -> 1
     DB 0E7H, 0CH          ; S13 -> C
-    DB 0D7H, 09H          ; S9  -> 9
-    DB 0B7H, 05H          ; S5  -> 5
-    DB 077H, 01H          ; S1  -> 1
-
+    DB 0D7H, 08H          ; S9  -> 8
+    DB 0B7H, 04H          ; S5  -> 4
+    DB 077H, 00H          ; S1  -> 0
 KEY_SCAN:
     LCALL KEY_READ          ; 先读一次键盘
     CJNE A, #0FFH, KS_DEBOUNCE
