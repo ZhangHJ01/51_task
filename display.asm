@@ -82,6 +82,44 @@ SHOW_KEY:
 
     RET
 
+; =========================================
+; SHOW_DASH
+; 功能：四位数码管显示----，表示串口接收超时
+; =========================================
+SHOW_DASH:
+    MOV R5, #40H            ; 横杠段码
+
+    MOV P2, #11111111B
+    CLR P2.2
+    CLR P2.3
+    CLR P2.4
+    MOV P0, R5
+    LCALL DELAY
+    MOV P0, #00H
+
+    SETB P2.2
+    CLR P2.3
+    CLR P2.4
+    MOV P0, R5
+    LCALL DELAY
+    MOV P0, #00H
+
+    CLR P2.2
+    SETB P2.3
+    CLR P2.4
+    MOV P0, R5
+    LCALL DELAY
+    MOV P0, #00H
+
+    SETB P2.2
+    SETB P2.3
+    CLR P2.4
+    MOV P0, R5
+    LCALL DELAY
+    MOV P0, #00H
+
+    RET
+
 ; 共阴极数码管段码：0 1 2 3 4 5 6 7 8 9 A b C d E F
 SEG_TABLE:
     DB 3FH, 06H, 5BH, 4FH
