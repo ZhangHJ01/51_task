@@ -33,3 +33,5 @@ Listings/
 *.temp
 *.#*
 *.~*
+
+*.doc
